@@ -44,4 +44,4 @@ class TestCRUDMeme:
 
         with allure.step(f'Проверка отсутствия в общем списке мемов ID {meme_id}'):
             meme_endpoint.get_all_memes()
-            meme_endpoint.check_meme_not_in_list(meme_id)
+            meme_endpoint.check_meme_in_list(meme_id, False)

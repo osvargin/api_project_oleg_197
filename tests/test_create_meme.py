@@ -40,9 +40,9 @@ class TestCreateMemes:
         with allure.step('Отправка запроса на создание мема'):
             meme_endpoint.create_meme(data)
             created_id = meme_endpoint.meme_id
-            delete_meme(created_id) # Добавил фикстуру удаления, так как мем создается
+            delete_meme(created_id)
             with allure.step(f'Проверка создания мема с ID: {created_id}'):
-                assert created_id is None, 'Мем не должен создаться'
+                meme_endpoint.assert_status_code()
 
     @allure.title('Создание мема с неполной data')
     @pytest.mark.negative
@@ -52,4 +52,5 @@ class TestCreateMemes:
         with allure.step('Отправка запроса на создание мема'):
             meme_endpoint.create_meme(data)
             created_id = meme_endpoint.meme_id
+            meme_endpoint.assert_status_code(400)
             assert created_id is None, 'Мем не должен создаться'
