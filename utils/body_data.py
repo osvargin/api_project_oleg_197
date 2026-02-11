@@ -34,18 +34,6 @@ def get_case(extra_field=None, remove_field=None):
     return case
 
 
-# def get_missing_field_cases():
-#     return [
-#         (f'Удаляем поле: {field}', get_case(remove_field=field))
-#         for field in ['text', 'url', 'tags', 'info']
-#     ]
-#
-#
-# def get_extra_fields_cases():
-#     case = get_case({'extra_field': 'should not be here'})
-#     return case
-
-
 def get_invalid_authorization_name():
     return [
         {'name': 1234},
@@ -53,3 +41,10 @@ def get_invalid_authorization_name():
         {'name': {'color': ['white', 'black'], 'objects': ['car', 'text', 'hands']}},
         {'name': ['testOleg']}
     ]
+
+
+def prepare_update_data(meme_id, **overrides):
+    data = get_base_meme()
+    data['id'] = meme_id
+    data.update(overrides)
+    return data

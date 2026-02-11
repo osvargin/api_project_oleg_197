@@ -23,6 +23,7 @@ class TestGetMemes:
         with allure.step(f'Получение мема с ID {meme_id}'):
             meme_endpoint.get_meme_by_id(meme_id)
             meme_endpoint.check_body_contains_one_meme()
+            meme_endpoint.check_meme_has_correct_id(meme_id)
 
     @allure.title('Получение конкретного мема по NOT_EXISTING_MEME_ID')
     @pytest.mark.negative
